@@ -1,6 +1,6 @@
 ---
 title: Examen Git IABD
-emoji: ":fork_and_knife:"
+emoji: "🍽️"
 colorFrom: blue
 colorTo: green
 sdk: gradio
