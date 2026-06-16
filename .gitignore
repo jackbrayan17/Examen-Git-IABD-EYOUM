@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.gradio/
+*.log
+.DS_Store
+deliverables/
+tmp/
+*.zip
+screenshot_*.png
+Livrable_*.pdf
