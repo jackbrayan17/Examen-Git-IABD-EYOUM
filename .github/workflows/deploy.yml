@@ -8,6 +8,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: huggingface-space-deploy
+  cancel-in-progress: true
+
 env:
   HF_USERNAME: JackBrayan17
   HF_SPACE: Examen-Git-IABD
@@ -44,4 +48,20 @@ jobs:
         run: |
           git remote add space \
             "https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$HF_SPACE"
-          git push --force space main
+
+          for attempt in 1 2 3 4 5; do
+            echo "Deploy attempt $attempt/5"
+            if git push --force space main; then
+              echo "Deployment to Hugging Face Space succeeded."
+              exit 0
+            fi
+
+            if [ "$attempt" -eq 5 ]; then
+              echo "Deployment failed after 5 attempts."
+              exit 1
+            fi
+
+            delay=$((attempt * 60))
+            echo "Hugging Face returned a temporary error or rate limit. Retrying in ${delay}s..."
+            sleep "$delay"
+          done
