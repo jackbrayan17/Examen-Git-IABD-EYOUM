@@ -10,7 +10,7 @@ def greet(name: str) -> str:
 
 
 with gr.Blocks(title="Demo MLOps - Recommandation de repas") as demo:
-    gr.Markdown("# Hello World - Demo MLOps")
+    gr.Markdown("# Hello Eyoum App- Demo MLOps")
     gr.Markdown(
         "Interface Gradio de demonstration pour le pipeline CI/CD "
         "GitHub Actions vers Hugging Face Spaces."
